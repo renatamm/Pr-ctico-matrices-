@@ -1,0 +1,89 @@
+#include "stdafx.h"
+	#include <iostream>
+	#include "conio.h"
+	#define MAX 20
+	
+
+	using namespace std;
+	void cargar_matriz (int M[MAX][MAX], int fil, int col);
+	void mostrar_matriz (int S[MAX][MAX], int fil, int col);
+	void suma_de_matrices (int A[MAX][MAX],int B[MAX][MAX], int fil, int col);
+	
+
+	
+
+	void main()
+	{
+		int A[MAX][MAX],B[MAX][MAX],fil,col;
+		//en la suma de matrices ambas deben ser del mismo tamanho, por eso solo pedimos una vez fila, y una vez columna
+		do
+		{
+			cout<<"Ingrese el tamanho de la fila: ";
+			cin>>fil;
+			cout<<"Ingrese el tamanho de la columa: ";
+			cin>>col;
+		}
+		while ((fil<=0 || fil>MAX) ||(col<=0 || col>MAX));
+	
+
+		cout<<"Ingrese los datos de su primera matriz: "<<endl;
+		cargar_matriz(A,fil,col);
+		cout<<endl<<endl;
+		mostrar_matriz(A,fil,col);
+		cout<<endl<<endl;
+		cout<<"Ingrese los datos de su segunda matriz: "<<endl;
+		cargar_matriz(B,fil,col);
+		cout<<endl<<endl;
+		mostrar_matriz(B,fil,col);
+	
+
+		suma_de_matrices (A,B,fil,col);
+	
+
+		getch();
+	
+
+	}
+	
+
+	
+
+	void cargar_matriz (int M[MAX][MAX], int fil, int col)
+	{
+		for (int i=0;i<fil; i++)
+			for (int j=0; j<col; j++)
+			{
+				cout<<"["<<i<<"]["<<j<<"]= ";
+				cin>>M[i][j];
+			}
+	}
+	
+
+	void mostrar_matriz (int S[MAX][MAX], int fil, int col)
+	{
+		for (int i=0; i<fil; i++)
+		{
+			for (int j=0; j<col; j++)
+			{
+				cout<<S[i][j]<<"\t";
+			}
+			cout<<endl;
+		}
+				
+	}
+	
+
+	void suma_de_matrices (int A[MAX][MAX],int B[MAX][MAX], int fil, int col)
+	{
+		int C[MAX][MAX];
+		for (int i=0;i<fil; i++)
+			for (int j=0; j<col; j++)
+			{
+				C[i][j]= (A[i][j]+B[i][j]);
+			}
+		cout<<"\n"<<"LA SUMATORIA DE AMBAS MATRICES ES: "<<endl;
+		mostrar_matriz(C,fil,col);
+	
+
+	}
+
