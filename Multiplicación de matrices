@@ -1,0 +1,91 @@
+#include "stdafx.h"
+	#include <iostream>
+	#include "conio.h"
+	#define MAX 20
+	
+
+	using namespace std;
+	void cargar_matriz(int M[MAX][MAX], int fil, int col);
+	void mostrar_matriz (int M[MAX][MAX], int fil, int col);
+	void multiplicacion (int A[MAX][MAX], int B[MAX][MAX], int filA, int colA, int filB, int colB);
+	
+
+	void main()
+	{
+		int A[MAX][MAX], B[MAX][MAX],filA,colA,filB,colB;
+		//cuando se multiplican dos matrices,
+		// la cantidad de columnas en 1 tiene que ser igual a filas en 2.
+		cout<<"Ingrese la cantidad de Filas en A: ";
+		cin>>filA;
+		cout<<"Ingrese la cantidad de Columnas en A: ";
+		cin>>colA;
+		cout<<"Ingrese la cantidad de Filas en B: ";
+		cin>>filB;
+		cout<<"Ingrese la cantidad de Columnas en B: ";
+		cin>>colB;
+		
+		
+		cout<<"La matriz A es: "<<endl;
+		cargar_matriz (A,filA,colA);
+		cout<<endl;
+		cout<<"La matriz B es: "<<endl;
+		cargar_matriz (B,filB,colB);
+		cout<<endl;
+		cout<<"La matrices escritas son: "<<endl;
+		mostrar_matriz (A,filA,colA);
+		cout<<endl;
+		mostrar_matriz (B,filB,colB);
+		multiplicacion (A,B,filA,colA,filB,colB);
+		getch();
+		
+	}
+	
+
+	void cargar_matriz(int M[MAX][MAX], int fil, int col)
+	{
+		for(int i=0;i<fil;i++)
+			for(int j=0;j<col;j++)
+			{
+				cout<<"["<<i<<"]["<<j<<"]= ";
+				cin>>M[i][j];
+			}
+	}
+	
+
+	void mostrar_matriz (int M[MAX][MAX], int fil, int col)
+	{
+		for(int i=0;i<fil;i++)
+		{
+			for(int j=0;j<col;j++)
+			{
+				cout<<M[i][j]<<"\t";
+			}
+			cout<<endl;
+		}
+	}
+	
+
+	void multiplicacion (int A[MAX][MAX], int B[MAX][MAX], int filA, int colA, int filB, int colB)
+	{
+		int C[MAX][MAX], filC,colC,x;
+		if (colA==filB)
+		{
+			filC=filA; //la fila de la multiplicacion es la de la primera matriz
+			colC=colB;//la columna de la multiplicacion es la de la segunda matriz
+			x=colA=filB;
+			for (int i=0; i<filC; i++)
+			{
+				for(int j=0;j<colC; j++)
+				{
+					C[i][j]=0;
+					for (int k=0;k<x; k++)
+						C[i][j]=C[i][j]+ (A[i][k]*B[k][j]);
+				}
+			}
+			cout<<endl;
+			cout<<"La matriz resultante de la multiplicacion es: "<<endl;
+			mostrar_matriz(C,filC,colC);
+		}
+		else
+			cout<<"No se puede multiplicar"<<endl;
+	}
