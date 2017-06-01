@@ -1,0 +1,49 @@
+#include "stdafx.h"
+	#include <iostream>
+	#include "conio.h"
+	#define MAX 10
+	
+
+	using namespace std;
+	void cargar_matriz (int A[MAX][MAX], int fil, int col);
+	void mostrar_matriz (int A[MAX][MAX], int fil, int col);
+	
+
+	void main()
+	{
+		int fil,col,A[MAX][MAX];
+		fil=3;
+		col=4;
+		cout<<"Se creara una matriz 3x4 en la que se obtengan los multiplos de 3."<<endl;
+		cargar_matriz(A,fil,col);
+		mostrar_matriz(A,fil,col);
+		
+		getch();
+	}
+	
+
+	void cargar_matriz (int A[MAX][MAX], int fil, int col)
+	{
+		int d=3,cont=1;
+		for (int i=0; i<fil; i++)
+		{
+			for (int j=0; j<col; j++)
+			{
+				A[i][j]=d*cont;
+				cont++;
+			}
+		}
+	}
+	
+
+	void mostrar_matriz (int A[MAX][MAX], int fil, int col)
+	{
+		for (int i=0; i<fil; i++)
+		{
+			for (int j=0; j<col; j++)
+			{
+				cout<<A[i][j]<<"\t";
+			}
+			cout<<endl;
+		}
+	}
