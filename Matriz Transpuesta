@@ -1,0 +1,66 @@
+#include "stdafx.h"
+	#include <iostream>
+	#include "conio.h"
+	#define MAX 20
+	
+
+	using namespace std;
+	void cargarmatriz (int fil, int col, int A[MAX][MAX]);
+	void matriztranspuesta (int fil, int col, int A[MAX][MAX], int B[MAX][MAX]);
+	
+
+	
+
+	void main()
+	{
+		int fil,col,A[MAX][MAX],B[MAX][MAX];
+		do
+		{
+			cout<<"Ingrese el numero de filas: ";
+			cin>>fil;	
+		}
+		while ((fil<=0)||(fil>MAX));
+		
+		do
+		{
+			cout<<"Ingrese el numero de columnas: ";
+			cin>>col;
+		}
+		while ((col<=0)||(col>MAX));
+	
+
+		cargarmatriz (fil,col,A);
+		matriztranspuesta (fil,col,A,B);
+		getch();
+	
+
+	}
+	
+
+	void cargarmatriz (int fil, int col, int A[MAX][MAX])
+	{
+		for (int i=0; i<fil; i++)
+			for (int j=0; j<col; j++)
+			{
+				cout<<"A["<<i<<"]["<<j<<"]= ";
+				cin>>A[i][j];
+			}
+	}
+	
+
+	void matriztranspuesta (int fil, int col, int A[MAX][MAX], int B[MAX][MAX])
+	{
+		int fil1,col1;
+		fil1=col;
+		col1=fil;
+		cout<<" "<<endl;
+		cout<<"SU MATRIZ TRANSPUESTA ES: "<<endl;
+		for (int i=0; i<fil1; i++)
+			for (int j=0; j<col1; j++)
+			{
+				B[i][j]=A[j][i];
+				cout<<"B["<<i<<"]["<<j<<"]= "<<B[i][j]<<endl;
+			}
+			
+	}
+
