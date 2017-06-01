@@ -1,0 +1,154 @@
+#include "stdafx.h"
+	#include <iostream>
+	#include "conio.h"
+	#define MAX 20
+	
+
+	using namespace std;
+	void cargar_matriz (int A[MAX][MAX], int orden);
+	void mostrar_matriz (int A[MAX][MAX], int orden);
+	void verificar_magica (int A[MAX][MAX], int orden);
+	int verificar_vector (int vec[], int n);
+	
+
+	void main()
+	{
+		//para verificar una matriz que sea magica, debe ser una matriz cuadrada
+		int orden,A[MAX][MAX];
+		do
+		{
+			cout<<"Ingrese la orden de la matriz: ";
+			cin>>orden;
+		}
+		while ((orden>MAX) || (orden<=0));
+		
+		cargar_matriz (A,orden);
+		cout<<endl;
+		mostrar_matriz (A,orden);
+		verificar_magica (A,orden);
+	
+
+		getch();
+	}
+	
+
+	
+
+	void cargar_matriz (int A[MAX][MAX], int orden)
+	{
+		for (int i=0; i<orden; i++)
+			for (int j=0; j<orden; j++)
+			{
+				cout<<"A["<<i<<"]["<<j<<"]= ";
+				cin>>A[i][j];
+			}
+	}
+	
+
+	void mostrar_matriz (int A[MAX][MAX], int orden)
+	{
+		for (int i=0; i<orden; i++)
+		{
+			for (int j=0; j<orden; j++)
+			{
+				cout<<A[i][j]<<"\t";
+			}
+			cout<<endl;
+		}
+	}
+	
+
+	void verificar_magica (int A[MAX][MAX], int orden)
+	{
+		
+		int i,j,vec[1000],n,aux,k=1; //n es el tamanho del vector
+		n=0;
+		aux=0;
+		for (i=0; i<orden; i++)
+		{
+			for (j=0; j<orden; j++)
+			{
+				aux=aux+A[i][j];
+			}
+		vec[n]=aux;
+		aux=0;
+		n++;
+		}
+	
+
+	
+
+	
+
+		for (i=0; i<orden; i++)
+		{
+			for (j=0; j<orden; j++)
+			{
+				aux=aux+A[j][i];
+			}
+		vec[n]=aux;
+		aux=0;
+		n++;
+		}
+	
+
+	
+
+		for (i=0; i<orden; i++)
+		{
+			aux=aux+ A[i][i];
+	
+
+		}
+		vec[n]=aux;
+		aux=0;
+		n++;
+	
+
+	
+
+		for (i=0; i<orden; i++)
+		{
+			for (j=0;j<orden; j++)
+			{
+				if ((i+j)==(orden-1))
+				aux=aux+ A[i][j];
+				
+			}
+			
+		}
+		vec[n]=aux;
+		n++;
+		aux=0;
+	
+
+		cout<<endl<<"El vector obtenido de las sumatorias es: "<<endl;
+		for (i=0; i<n; i++)
+		{
+			cout<<"vec["<<i<<"]= "<<vec[i]<<endl;
+		}
+	
+
+		k=verificar_vector(vec,n);
+		if (k==1)
+			cout<<"La matriz no es magica"<<endl;
+		else
+			cout<<"La matriz es magica"<<endl;
+	}
+	
+
+	int verificar_vector (int vec[], int n)
+	{
+		int k=0;
+		for (int i=0; i<(n-1); i++)
+		{
+			if ((vec[i])!=(vec[i+1]))
+			{
+			k=1;
+			}
+	
+
+		}
+		return (k);
+	}
+
