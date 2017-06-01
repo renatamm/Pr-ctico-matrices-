@@ -1,0 +1,66 @@
+#include "stdafx.h"
+	#include <iostream>
+	#include "conio.h"
+	#define MAX 10
+	
+
+	using namespace std;
+	void cargar_matriz (int A[MAX][MAX], int fil, int col);
+	void mostrar_matriz (int A[MAX][MAX], int fil, int col);
+	
+
+	void main()
+	{
+		int fil,col,A[MAX][MAX];
+		// nota: se obtendra los cuadrados de cada numero, pero si es que este numero obtenido
+		//tiene 2 cifras, estas se invertiran.
+		cout<<"Se creara una matriz 3x3 en la que se obtengan los cuadrados de cada numero."<<endl;
+		fil=3;
+		col=3;
+		cout<<endl;
+		cargar_matriz(A,fil,col);
+		mostrar_matriz(A,fil,col);
+		
+		getch();
+	}
+	
+
+	void cargar_matriz (int A[MAX][MAX], int fil, int col)
+	{
+		int d=1,cont=1,cociente,residuo,digito,nuevonum; 
+		//"d" es el digito para generar el elemento de la matriz
+		//"cont" lo usaremos para saber cuantos digitos tiene "d"
+		for (int i=0; i<fil; i++)
+		{
+			for (int j=0; j<col; j++)
+			{
+				cociente=(d*d)/10;
+				if (cociente==0)
+				{
+					A[i][j]=d*d;
+					d++;
+				}
+				else 
+				{
+					residuo=(d*d)%10;
+					nuevonum= ((residuo*10)+cociente);
+					A[i][j]=nuevonum;
+					d++;
+				}
+				
+			}
+		}
+	}
+	
+
+	void mostrar_matriz (int A[MAX][MAX], int fil, int col)
+	{
+		for (int i=0; i<fil; i++)
+		{
+			for (int j=0; j<col; j++)
+			{
+				cout<<A[i][j]<<"\t";
+			}
+			cout<<endl;
+		}
+	}
